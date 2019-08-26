@@ -1,0 +1,52 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(int argc, string argv[])
+{    
+    // Check if 2 commandline arguments are given, otherwise abort program
+    if (argc == 2)
+    {
+        // Loop through argv[1] to check if only alphanumeric inputs are given
+        int n = strlen(argv[1]);
+        for (int i = 0; i < n; i++)
+        {
+            if (isdigit(argv[1][i]))
+            {
+                printf ("Success\n");
+                return 0;
+            }
+            else 
+            {
+                printf ("Usage: ./ceasar key\n");
+                return 1;
+            }
+        }
+    }
+    else
+    {
+        printf ("Usage: ./ceasar key\n");
+        return 1;
+    };
+    
+    // Transform argv[1] to int and assign to key variable
+    int key = atoi(argv[1]);
+    printf ("%i\n", key);
+    
+    // Ask user for secret message
+    string message = get_string("plaintext: ");
+    // Determine length of secret message
+    int length = strlen(message);
+    // Print "ciphertext: "
+    printf ("ciphertext: ");
+    // Loop through message to print every char misplaced by 1 on same line
+    for (int i = 0; i < length; i++)
+    {
+        printf ("%c", message[i] + key);
+    }
+    // Go to next line
+    printf ("\n");
+    
+}
